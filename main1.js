@@ -26,6 +26,7 @@ const readDir = (base, level) => {
                         for (let i = 0; i < arrOfString.length; i++) {
                             sum = sum + parseInt(arrOfString[i]);
                         }
+                        console.log(sum);
                     });
                 }
             });
@@ -34,9 +35,8 @@ const readDir = (base, level) => {
     });
 };
 
+
+
 readDir(base, 0);
 
-process.on('exit' , function() {
-    console.log(sum);
-});
 
