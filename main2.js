@@ -1,4 +1,5 @@
-const fs = require('fs');
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs'));
 const path = require('path');
 //const base = './test';
 var argv = argv = require('minimist')(process.argv.slice(2));

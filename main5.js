@@ -4,9 +4,11 @@ const path = require('path');
 var argv = argv = require('minimist')(process.argv.slice(2));
 const base = argv['_'][0];
 var sum = 0;
+var resultMass = [];
 const readDir = (base, level) => {
     fs.readdir(base, (err, files) => {
         if (err) return console.log(err);
+        //async.eachSeries(files, function (item, eachCallback)
         files.forEach((item) => {
             let localBase = path.join(base, item);
             fs.stat(localBase, (err, state) => {
@@ -23,10 +25,8 @@ const readDir = (base, level) => {
                         //sum = sum + parseInt(result);
                         let arrOfString = result.split(' ');
                         console.log(arrOfString);
-                        for (let i = 0; i < arrOfString.length; i++) {
-                            sum = sum + parseInt(arrOfString[i]);
-                        }
-                        console.log(sum);
+                        resultMass.push(arrOfString);
+                        console.log(resultMass);
                     });
                 }
             });
@@ -37,16 +37,10 @@ const readDir = (base, level) => {
 
 
 readDir(base, 0);
+
 //console.log(sum);
 
-function test() {
-    return new Promise(function(resolve, reject) {
-        process({}, function(result) {
-            resolve(result);
-        });
-    });
-}
-
-test().then(function(result){
-    console.log(sum)
-});
+// for (let i = 0; i < arrOfString.length; i++) {
+//     sum = sum + parseInt(arrOfString[i]);
+// }
+// console.log(sum);
