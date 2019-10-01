@@ -20,7 +20,9 @@ async function getFiles(dir) {
             return await readFile(fullPath);
         }
     }));
-    //вернем данные в буфере
+    //console.log(files.toString());
+    //для каждого элемента массива files запустить функцию, чтобы сцепить все элементы во едино
+    //(промежуточный результат, элемент) => новый промежуточный результат, начальное значение
     return files.reduce((a, f) => a.concat(f), []);
 }
 
