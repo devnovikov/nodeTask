@@ -9,6 +9,7 @@ const base = argv['_'][0];
 
 async function getFiles(dir) {
     const subDirs = await readDir(dir);
+    console.log("Сабдир: " + subDirs);
     const files = await Promise.all(subDirs.map(async (subDir) => {
         //console.log('DIR:' + dir);
         //console.log('SUBDIR:' +subDir);
@@ -20,6 +21,7 @@ async function getFiles(dir) {
             return await readFile(fullPath);
         }
     }));
+
     //console.log(files.toString());
     //для каждого элемента массива files запустить функцию, чтобы сцепить все элементы во едино
     //(промежуточный результат, элемент) => новый промежуточный результат, начальное значение
