@@ -12,14 +12,30 @@ function getFiles(dir) {
 
 return readDir(dir)
     .then(files => {
-        console.log(files);
-        const subDirs = files; // что нужно сделать с результатом
-        console.log("Сабдир: " + subDirs);
-        return subDirs;
+        const promises = [];
+        const arrOfString = files.toString().split(',');
+        //console.log(Promise.resolve(arrOfString));
+
+        arrOfString.map((newProm) => {
+            // In the below line, two things happen.
+            // 1. We are calling the async function (timeout()). So at this point the async function has started and enters the 'pending' state.
+            // 2. We are pushing the pending promise to an array.
+            promises.push(Promise.resolve(newProm));
+        });
+        //console.log(promises);
+        console.log("Сабдир: " + files);
+        return files;
     })
     .then((subDirs) => {
 
+        console.log(subDirs);
         return Promise.all(subDirs.map((subDir) => {
+            // console.log(subDir);
+            // Promise.resolve(subDir).then(fileName => {
+            //      const fullPath = resolve(dir, fileName);
+            //     console.log(stat(fullPath));
+            // });
+
             console.log('DIR:' + dir);
             console.log('SUBDIR:' + subDir);
             const fullPath = resolve(dir, subDir);
@@ -29,7 +45,7 @@ return readDir(dir)
                     if (state.isDirectory()) {
                         getFiles(fullPath);
                     } else {
-                         return readFile(fullPath);
+                         return Promise.resolve(readFile(fullPath));
                         // ----------- Если здесь расскомментировать, а закомментировать строку выше, то можно увидеть, что все числа корректно считываются
                         //  readFile(fullPath)
                         // .then(result => {
