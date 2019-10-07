@@ -37,7 +37,7 @@ return readDir(dir)
                             });
                         });
         })).then((values) => {
-            console.log('values: ' + values);
+            //console.log('values: ' + values);
             return values.reduce((a, f) => a.concat(f), []);
         });
 
