@@ -13,7 +13,7 @@
   "author": "Alexey Novikov",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "bluebird": "^3.5.5",
     "fs-promise": "^2.0.3",
     "mz": "^2.7.0",
